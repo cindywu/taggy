@@ -1,8 +1,8 @@
 import React, { useState } from 'react'
 import { useEffect } from 'react'
-import { Socket } from 'Socket.IO-client'
+// import { Socket } from 'Socket.IO-client'
 import io from 'Socket.IO-client'
-let socket : Socket
+let socket : any
 
 interface CarState {
   x: number
