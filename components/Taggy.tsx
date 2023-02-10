@@ -44,7 +44,7 @@ const Home = () => {
 
   const [input, setInput] = useState('')
 
-  const onChangeHandler = (e) => {
+  const onChangeHandler = (e : any) => {
     // debugger;
     setInput(e.target.value)
     socket?.emit('input-change', e.target.value)

@@ -1,6 +1,9 @@
 // Next.js API route support: https://nextjs.org/docs/api-routes/introduction
-import { Socket } from 'dgram'
-import type { NextApiRequest, NextApiResponse } from 'next'
+// import { Socket } from 'dgram'
+import type {
+  NextApiRequest,
+  // NextApiResponse
+} from 'next'
 import { Server } from 'socket.io'
 
 type Data = {
@@ -9,7 +12,7 @@ type Data = {
 
 export default function handler(
   req: NextApiRequest,
-  res: NextApiResponse<Data>
+  res: any
 ) {
   if (res.socket && res.socket.server.io) {
     console.log('Socket is already running')
