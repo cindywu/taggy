@@ -3,32 +3,30 @@
 import type {
   NextApiRequest,
   // NextApiResponse
-} from 'next'
-import { Server } from 'socket.io'
+} from "next";
+import { Server } from "socket.io";
 
 type Data = {
-  name: string
-}
+  name: string;
+};
 
-export default function handler(
-  req: NextApiRequest,
-  res: any
-) {
+export default function handler(req: NextApiRequest, res: any) {
   if (res.socket && res.socket.server.io) {
-    console.log('Socket is already running')
+    console.log("Socket is already running");
   } else {
-    console.log('Socket is initializing')
-    const io = new Server(res.socket.server)
-    res.socket.server.io = io
+    console.log("Socket is initializing");
+    const io = new Server(res.socket.server);
+    res.socket.server.io = io;
 
-    io.on('connection', socket => {
-      socket.emit('hello world', 'hello world')
-      socket.on('input-change', msg => {
-        console.log('i am in input change!')
-        socket.broadcast.emit('update-input', msg)
-      })
-    })
-
+    io.on("connection", (socket) => {
+      socket.emit("hello world", "hello world");
+      socket.on("input-change", (msg) => {
+        socket.broadcast.emit("update-input", msg);
+      });
+      socket.on("car-change", (msg) => {
+        socket.broadcast.emit("update-car", msg);
+      });
+    });
   }
-  res.end()
+  res.end();
 }
